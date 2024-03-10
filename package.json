@@ -1,0 +1,30 @@
+{
+  "name": "gopro-utils",
+  "version": "0.0.0",
+  "repository": "git@github.com:amirmohsen/gopro-utils.git",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "gopro": "./bin/index"
+  },
+  "scripts": {
+    "build": "babel src --out-dir dist --extensions .ts,.js,.tsx,.jsx,.cjs,.mjs --source-maps",
+    "watch": "yarn build --watch",
+    "format": "prettier . --write"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.23.9",
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@babel/preset-typescript": "^7.23.3",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.11.25",
+    "@types/yargs": "^17.0.32",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.2"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "yargs": "^17.7.2"
+  }
+}
