@@ -1,11 +1,11 @@
 {
-  "name": "gopro-utils",
+  "name": "first-person-diary-utils",
   "version": "0.0.0",
-  "repository": "git@github.com:amirmohsen/gopro-utils.git",
+  "repository": "git@github.com:amirmohsen/first-person-diary-utils.git",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "gopro": "./bin/index"
+    "fpd": "./bin/index"
   },
   "scripts": {
     "build": "babel src --out-dir dist --extensions .ts,.js,.tsx,.jsx,.cjs,.mjs --source-maps",
