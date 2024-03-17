@@ -1,6 +1,7 @@
 import yargs, { Argv } from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import processVideoFileNames from './commands/processVideoFileNames/index.js';
+import createMetaDataFile from './commands/createMetaDataFile/index.js';
 
 process.on('unhandledRejection', (reason) => {
   throw reason;
@@ -32,6 +33,11 @@ yargs(hideBin(process.argv))
         });
     },
     processVideoFileNames,
+  )
+  .command(
+    'create-meta-data-file',
+    'create meta data file containing timelines info',
+    createMetaDataFile,
   )
   .completion()
   .demandCommand(1)

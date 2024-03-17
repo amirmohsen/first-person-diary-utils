@@ -4,6 +4,8 @@ projectManager = resolve.GetProjectManager()
 
 project = projectManager.GetCurrentProject()
 
+projectName = project.GetName()
+
 projectManager.CloseProject(project)
 
-projectManager.DeleteProject('test')
+projectManager.DeleteProject(projectName)

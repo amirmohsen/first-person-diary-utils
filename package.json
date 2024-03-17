@@ -24,6 +24,7 @@
     "typescript": "^5.4.2"
   },
   "dependencies": {
+    "@inquirer/prompts": "^4.3.0",
     "fs-extra": "^11.2.0",
     "yargs": "^17.7.2"
   }
