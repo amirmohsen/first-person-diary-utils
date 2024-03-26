@@ -26,6 +26,7 @@ def render_all_timelines(project_dir_path, project):
   while timelineIndex <= project.GetTimelineCount():
     timeline = project.GetTimelineByIndex(timelineIndex)
     project.SetCurrentTimeline(timeline)
+    project.SetCurrentRenderFormatAndCodec('mp4', 'H264')
     project.SetRenderSettings({
       'TargetDir': project_dir_path,
       'CustomName': project.GetName() + '-' + timeline.GetName(),
@@ -34,7 +35,9 @@ def render_all_timelines(project_dir_path, project):
       'FormatWidth': 3840,
       'FormatHeight': 2160,
       'FrameRate': 29.97,
-      'VideoQuality': 90000
+      'VideoQuality': 90000,
+      'AudioCodec': 'aac',
+      'AudioSampleRate': 300
     })
     project.AddRenderJob()
     timelineIndex += 1
