@@ -53,7 +53,7 @@ const createMetaDataFile = async (argv: CreateMetaDataFileArguments) => {
     }
 
     const fileIds = await checkbox({
-      message: 'Rrelevant media files?',
+      message: 'Relevant media files?',
       choices: Object.keys(numberedMediaFiles).map((fileNo) => ({
         value: fileNo,
       })),
