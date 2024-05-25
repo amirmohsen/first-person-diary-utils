@@ -1,5 +1,5 @@
 import { resolve, join } from 'path';
-import { ensureDir, move } from 'fs-extra/esm';
+import { ensureDir, move, remove } from 'fs-extra/esm';
 import { readdir } from 'fs/promises';
 
 export interface ProcessVideoFileNamesArguments {
@@ -10,7 +10,7 @@ export interface ProcessVideoFileNamesArguments {
 
 const currentDir = process.cwd();
 
-const regex = /G(?:L|X)([0-9]{2})([0-9]{4})\.(LRV|MP4)/;
+const regex = /G(?:L|X)([0-9]{2})([0-9]{4})\.(LRV|MP4|THM)/;
 
 const processVideoFileNames = async (argv: ProcessVideoFileNamesArguments) => {
   const { src, media, proxy } = argv;
@@ -25,26 +25,32 @@ const processVideoFileNames = async (argv: ProcessVideoFileNamesArguments) => {
     ensureDir(proxyDir),
   ]);
 
-  const srcMovePromises: Promise<void>[] = [];
+  const fileOpPromises: Promise<void>[] = [];
 
   for (const srcFile of srcFiles) {
     const matches = regex.exec(srcFile);
 
     if (matches) {
       const [, chapterNo, fileNo, extension] = matches;
+      const srcFilePath = join(srcDir, srcFile);
+
+      if (extension === 'THM') {
+        fileOpPromises.push(remove(srcFilePath));
+        continue;
+      }
+
       const newFileName = `${fileNo}-${chapterNo}.mp4`;
 
-      const srcFilePath = join(srcDir, srcFile);
       const destFilePath = join(
         extension === 'MP4' ? mediaDir : proxyDir,
         newFileName,
       );
 
-      srcMovePromises.push(move(srcFilePath, destFilePath));
+      fileOpPromises.push(move(srcFilePath, destFilePath));
     }
   }
 
-  await Promise.all(srcMovePromises);
+  await Promise.all(fileOpPromises);
 };
 
 export default processVideoFileNames;
