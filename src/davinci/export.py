@@ -41,7 +41,7 @@ def render_all_timelines(project_dir_path, project):
     })
     project.AddRenderJob()
     timelineIndex += 1
-  project.StartRendering(True)
+  # project.StartRendering(True)
 
 
 # run
